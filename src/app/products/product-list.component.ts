@@ -1,56 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../shared/service/product.service';
+import { IProduct } from './product';
 
 @Component({
     selector: 'pm-products',
     templateUrl: './product-list.component.html',
     styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit {
+    constructor(private productService: ProductService) {}
+
     pageTitle: string = 'Product List';
-    imageWidth: number = 50;
+    imageWidth: number = 40;
     imageMargin: number = 2;
-    showImage: boolean = false;
+    imageIsShown: boolean = false;
     listFilter: string;
+    products: IProduct[];
 
-    products: any[] = [
-        {
-            "productId": 1,
-            "productName": "Leaf Rake",
-            "productCode": "GDN-0011",
-            "releaseDate": "March 19, 2019",
-            "description": "Leaf rake with 48-inch wooden handle.",
-            "price": 19.95,
-            "starRating": 3.2,
-            "imageUrl": "assets/images/leaf_rake.png"
-          },
-          {
-            "productId": 2,
-            "productName": "Garden Cart",
-            "productCode": "GDN-0023",
-            "releaseDate": "March 18, 2019",
-            "description": "15 gallon capacity rolling garden cart",
-            "price": 32.99,
-            "starRating": 4.2,
-            "imageUrl": "assets/images/garden_cart.png"
-          },
-          {
-            "productId": 5,
-            "productName": "Hammer",
-            "productCode": "TBX-0048",
-            "releaseDate": "May 21, 2019",
-            "description": "Curved claw steel hammer",
-            "price": 8.9,
-            "starRating": 4.8,
-            "imageUrl": "assets/images/hammer.png"
-          },
-    ];
-
-    toggleImage(): void {
-        this.showImage = !this.showImage;
+    ngOnInit(): void {
+        this.listProducts();
     }
 
-    filter(event: Event) {
-        event.preventDefault();
+    listProducts(): void {
+        this.products = this.productService.getProducts();
+    }
+
+    // Set whether the image is shown or not
+    toggleImage(): void {
+        this.imageIsShown = !this.imageIsShown;
+    }
+
+    filter(): void {
+        if (!this.listFilter.trim()) {
+            this.listProducts();
+        }
+        
+        let filterBy: string = this.listFilter.toLowerCase();
+        this.products = this.products.filter(product => product.productName.toLowerCase().includes(filterBy));
     }
 }
 
