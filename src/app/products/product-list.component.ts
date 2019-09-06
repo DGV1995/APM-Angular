@@ -14,7 +14,7 @@ export class ProductListComponent implements OnInit {
     pageTitle: string = 'Product List';
     imageWidth: number = 30;
     imageMargin: number = 2;
-    imageIsShown: boolean = false;
+    imageIsShown: boolean = true;
     listFilter: string;
     products: IProduct[];
 
@@ -23,8 +23,11 @@ export class ProductListComponent implements OnInit {
     }
 
     listProducts(): void {
-        this.products = this.productService.getProducts();
-        //this.productService.getProducts().subscribe(data => this.products = data);
+        // Subscribe is a method that notifies when the data is received
+        this.productService.getProducts().subscribe({
+            next: data => this.products = data,
+            error: err => alert(err) // manage if there is an error
+        });
     }
 
     // Set whether the image is shown or not
