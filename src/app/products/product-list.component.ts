@@ -5,9 +5,10 @@ import { IProduct } from './product';
 @Component({
     selector: 'pm-products',
     templateUrl: './product-list.component.html',
-    styleUrls: ['./product-list.component.css']
+    styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
+    // Inject the service in the constructor
     constructor(private productService: ProductService) {}
 
     pageTitle: string = 'Product List';
@@ -23,6 +24,7 @@ export class ProductListComponent implements OnInit {
 
     listProducts(): void {
         this.products = this.productService.getProducts();
+        //this.productService.getProducts().subscribe(data => this.products = data);
     }
 
     // Set whether the image is shown or not
@@ -30,6 +32,7 @@ export class ProductListComponent implements OnInit {
         this.imageIsShown = !this.imageIsShown;
     }
 
+    // Filter the products by name
     filter(): void {
         if (!this.listFilter.trim()) {
             this.listProducts();
@@ -39,7 +42,7 @@ export class ProductListComponent implements OnInit {
         this.products = this.products.filter(product => product.productName.toLowerCase().includes(filterBy));
     }
 
-    // Use the string received by the nested component (StarComponent)
+    // Use the string received from the nested component (StarComponent)
     onRatingClicked(message: string): void {
         alert(message);
     }

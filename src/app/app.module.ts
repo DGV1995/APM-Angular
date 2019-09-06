@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './products/product-list.component'
-import { ProductService } from './shared/service/product.service';
 import { ConvertToSpacesPipe } from './shared/pipe/convert-to-spaces.pipe';
 import { StarComponent } from './shared/star/star.component';
 
@@ -22,7 +21,7 @@ import { StarComponent } from './shared/star/star.component';
   imports: [ BrowserModule, FormsModule ], 
   // Startup component of the application
   bootstrap: [ AppComponent ],
-  providers: [ ProductService ]
+  providers: []
 })
 
 export class AppModule { }
