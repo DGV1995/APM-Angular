@@ -22,6 +22,5 @@ export class ProductService {
     private handleError(error: HttpErrorResponse) {
         alert(error.message);
         return throwError(error);
-        //console.log(error.message);
     }
 }
