@@ -11,7 +11,7 @@ export class ProductListComponent implements OnInit {
     constructor(private productService: ProductService) {}
 
     pageTitle: string = 'Product List';
-    imageWidth: number = 40;
+    imageWidth: number = 30;
     imageMargin: number = 2;
     imageIsShown: boolean = false;
     listFilter: string;
@@ -37,6 +37,11 @@ export class ProductListComponent implements OnInit {
         
         let filterBy: string = this.listFilter.toLowerCase();
         this.products = this.products.filter(product => product.productName.toLowerCase().includes(filterBy));
+    }
+
+    // Use the string received by the nested component (StarComponent)
+    onRatingClicked(message: string): void {
+        alert(message);
     }
 }
 

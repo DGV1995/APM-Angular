@@ -48,7 +48,13 @@
                         <td>{{product.releaseDate}}</td>
                         <td>{{product.price | currency: 'USD' : 'symbol': '1.2-2'}}</td>
                         <!-- Use the starRating value in the StarComponent -->
-                        <td><pm-stars [rating]='product.starRating'></pm-stars></td>
+                        <td>
+                            <pm-stars [rating]='product.starRating'
+                                      (ratingClicked)='onRatingClicked($event)'>
+                                      <!-- Get the ratingClicked event and pass its emitted 
+                                        value (string) to the onRatingClicked() function -->
+                            </pm-stars>
+                        </td>
                     </tr>
                 </tbody>
             </table>
