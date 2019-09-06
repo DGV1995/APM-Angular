@@ -7,10 +7,16 @@ import { AppComponent } from './app.component';
 import { ProductListComponent } from './products/product-list.component'
 import { ProductService } from './shared/service/product.service';
 import { ConvertToSpacesPipe } from './shared/pipe/convert-to-spaces.pipe';
+import { StarComponent } from './shared/star/star.component';
 
 @NgModule({
   // Which of our components belong to this module
-  declarations: [ AppComponent, ProductListComponent, ConvertToSpacesPipe ], 
+  declarations: [ 
+    AppComponent, 
+    ProductListComponent, 
+    ConvertToSpacesPipe, 
+    StarComponent 
+  ], 
   /* External modules we want to have available to all of the components that 
   belong to this module*/
   imports: [ BrowserModule, FormsModule ], 

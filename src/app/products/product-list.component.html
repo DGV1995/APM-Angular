@@ -9,7 +9,7 @@
                 <input type='text' [(ngModel)]='listFilter' (keyup)='filter()'/>
             </div>
         </div>
-        <div class='row'>
+        <div class='row' *ngIf='listFilter'>
             <div class='col-md-6'>
                 <h4>Filtered by: {{listFilter}} </h4>
             </div>
@@ -47,7 +47,8 @@
                         <td>{{product.productCode | convertToSpaces: '-'}}</td>
                         <td>{{product.releaseDate}}</td>
                         <td>{{product.price | currency: 'USD' : 'symbol': '1.2-2'}}</td>
-                        <td>{{product.starRating}}</td>
+                        <!-- Use the starRating value in the StarComponent -->
+                        <td><pm-stars [rating]='product.starRating'></pm-stars></td>
                     </tr>
                 </tbody>
             </table>
