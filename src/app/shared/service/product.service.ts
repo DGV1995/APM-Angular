@@ -18,8 +18,11 @@ export class ProductService {
         );
     }
     
+    // Function to execute if there is any error retrieving the data from the web server
     private handleError(error: HttpErrorResponse) {
-        console.log(error);
+        alert(error.message);
         return throwError(error);
+        //console.log(error.message);
+        
     }
 }
