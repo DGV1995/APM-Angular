@@ -11,24 +11,22 @@ import { ProductService } from 'src/app/shared/service/product.service';
 export class ProductDetailsComponent implements OnInit {
   pageTitle: string = 'Product Detail';
   product: IProduct;
+  id: number;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router, private productService: ProductService) {
     console.log(this.route.snapshot.paramMap.get('id'));
   }
 
   ngOnInit(): void {
     // '+' symbol turns the parameter id into an integer
-    let id = +this.route.snapshot.paramMap.get('id');
-    this.product = {
-      "productId": id,
-      "productName": "Leaf Rake",
-      "productCode": "GDN-0011",
-      "releaseDate": "March 19, 2019",
-      "description": "Leaf rake with 48-inch wooden handle.",
-      "price": 19.95,
-      "starRating": 3.2,
-      "imageUrl": "assets/images/leaf_rake.png"
-    }
+    this.id = +this.route.snapshot.paramMap.get('id');
+    this.getProduct();
+  }
+
+  getProduct(): void {
+    this.productService.getProducts().subscribe(products => {
+      this.product = products.find(product => product.productId == this.id);
+    })
   }
 
   onBack(): void {
