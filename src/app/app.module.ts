@@ -1,45 +1,36 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { ProductListComponent } from './products/product-list.component'
-import { ConvertToSpacesPipe } from './shared/pipe/convert-to-spaces.pipe';
-import { StarComponent } from './shared/star/star.component';
-import { ProductDetailsComponent } from './products/product-details/product-details.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
-import { ProductDetailsGuard } from './products/product-details.guard';
+import { ProductsModule } from './products/products.module';
+import { SharedModule } from './shared/shared.module';
+import { WelcomeModule } from './home/welcome.module';
 
 @NgModule({
   // Which of our components belong to this module
-  declarations: [ 
-    AppComponent, 
-    ProductListComponent, 
-    ConvertToSpacesPipe, 
-    StarComponent, 
-    ProductDetailsComponent,
-    WelcomeComponent,
-    PageNotFoundComponent 
+  declarations: [  
+    AppComponent 
   ], 
   /* External modules we want to have available to all of the components that 
   belong to this module*/
   imports: [ 
-    BrowserModule, 
-    FormsModule,
+    BrowserModule, // BrowserModule must always be imported in root module!
     HttpClientModule,
+    ProductsModule,
+    SharedModule,
+    WelcomeModule,
     RouterModule.forRoot([
       { path: 'welcome', component: WelcomeComponent },
-      { path: 'products', component: ProductListComponent },
-      { path: 'products/:id', canActivate: [ProductDetailsGuard], component: ProductDetailsComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full'},
       { path: '**', component: PageNotFoundComponent }
     ])
   ], 
   // Startup component of the application
-  bootstrap: [ AppComponent ],
+  bootstrap: [ AppComponent ]
 })
 
 export class AppModule { }
