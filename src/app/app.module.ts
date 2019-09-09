@@ -11,6 +11,7 @@ import { StarComponent } from './shared/star/star.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { ProductDetailsGuard } from './products/product-details.guard';
 
 @NgModule({
   // Which of our components belong to this module
@@ -32,7 +33,7 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
     RouterModule.forRoot([
       { path: 'welcome', component: WelcomeComponent },
       { path: 'products', component: ProductListComponent },
-      { path: 'products/:id', component: ProductDetailsComponent },
+      { path: 'products/:id', canActivate: [ProductDetailsGuard], component: ProductDetailsComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full'},
       { path: '**', component: PageNotFoundComponent }
     ])
