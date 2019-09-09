@@ -1,6 +1,13 @@
-<!--The content below is only a placeholder and can be replaced.-->
+<h1>{{title}}</h1>
+<ul class='nav'>
+  <li class='nav-item'>
+    <a class='nav-link' [routerLink]="['/welcome']">Home</a>
+  </li>
+  <li class='nav-item'>
+    <a class='nav-link' [routerLink]="['/products']">Products</a>
+  </li>
+</ul>
+<!-- This is necessary in order to make the application work! -->
 <div>
-  <h1>{{title}}</h1> <!-- Angular: Getting Started -->
-  <pm-products></pm-products>
+  <router-outlet></router-outlet>
 </div>
-

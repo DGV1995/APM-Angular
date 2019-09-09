@@ -1,7 +1,4 @@
 <div class='card'>
-    <div class='card-header'>
-        {{pageTitle}}
-    </div>
     <div class='card-body'>
         <div class='row'>
             <div class='col-md-2'>Filter by: </div>
@@ -30,6 +27,7 @@
                         <th>Available</th>
                         <th>Price</th>
                         <th>Rating</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,6 +53,7 @@
                                         value (string) to the onRatingClicked() function -->
                             </pm-stars>
                         </td>
+                        <td><a [routerLink]="['/products']">Details</a></td>
                     </tr>
                 </tbody>
             </table>
