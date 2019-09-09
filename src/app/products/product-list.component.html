@@ -41,7 +41,7 @@
                                  
                             />
                         </td>
-                        <td><a [routerLink]='["./", product.productId]'>{{product.productName}}</a></td>
+                        <td><a [routerLink]='["./", product.id]'>{{product.productName}}</a></td>
                         <td>{{product.productCode | convertToSpaces: '-'}}</td>
                         <td>{{product.releaseDate}}</td>
                         <td>{{product.price | currency: 'USD' : 'symbol': '1.2-2'}}</td>

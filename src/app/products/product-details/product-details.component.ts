@@ -24,12 +24,12 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   getProduct(): void {
-    this.productService.getProducts().subscribe(products => {
-      /*
+    /*
       To get only one product, we have to use 'find()' method
       'filter()' method returns an array of IProduct
       */ 
-      this.product = products.find(product => product.productId == this.id);
+    this.productService.getProducts().subscribe(products => {
+      this.product = products.find(product => product.id == this.id);
     })
   }
 
