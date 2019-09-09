@@ -13,9 +13,9 @@ export class ProductDetailsComponent implements OnInit {
   product: IProduct;
   id: number;
 
-  constructor(private route: ActivatedRoute, private router: Router, private productService: ProductService) {
-    console.log(this.route.snapshot.paramMap.get('id'));
-  }
+  constructor(private route: ActivatedRoute, 
+              private router: Router, 
+              private productService: ProductService) {}
 
   ngOnInit(): void {
     // '+' symbol turns the parameter id into an integer
