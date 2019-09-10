@@ -1,0 +1,53 @@
+<div class='card'>
+    <div class='card-header'>{{title}}</div>
+    <div class='card-body' *ngIf='product'>
+        <form (submit)='updateProduct()'>
+            <div class='form-group row'>
+                <label class='col-sm-2'>Name: </label>
+                <div class='col-sm-10'>
+                    <input type='text' class='form-control' [(ngModel)]='product.productName' [ngModelOptions]="{standalone: true}"/>
+                </div>
+            </div>
+            <div class='form-group row'>
+                <label class='col-sm-2'>Code: </label>
+                <div class='col-sm-10'>
+                    <input type='text' class='form-control'[(ngModel)]='product.productCode' [ngModelOptions]="{standalone: true}"/>
+                </div>
+            </div>
+            <div class='form-group row'>
+                <label class='col-sm-2'>Description: </label>
+                <div class='col-sm-10'>
+                    <textarea type='text' class='form-control' [(ngModel)]='product.description' [ngModelOptions]="{standalone: true}"></textarea>
+                </div>
+            </div>
+            <div class='form-group row'>
+                <label class='col-sm-2'>Availability: </label>
+                <div class='col-sm-10'>
+                    <input type='text' class='form-control' [(ngModel)]='product.releaseDate' [ngModelOptions]="{standalone: true}"/>
+                </div>
+            </div>
+            <div class='form-group row'>
+                <label class='col-sm-2'>Price: </label>
+                <div class='col-sm-10'>
+                    <input type='text' class='form-control' [(ngModel)]='product.price' [ngModelOptions]="{standalone: true}"/>
+                </div>
+            </div>
+            <div class='form-group row'>
+                <label class='col-sm-2'>5 Star Rating: </label>
+                <div class='col-sm-10'>
+                    <input type='text' class='form-control' [(ngModel)]='product.starRating' [ngModelOptions]="{standalone: true}"/>
+                </div>
+            </div>
+            <div class='form-group row'>
+                <label class='col-sm-2'>Image URL: </label>
+                <div class='col-sm-10'>
+                    <input type='text' class='form-control' [(ngModel)]='product.imageUrl' [ngModelOptions]="{standalone: true}"/>
+                </div>
+            </div>
+            <div class='form-group row'>
+                <input type='submit' value='Save' class='btn btn-outline-success btn-xs mx-4'/>
+                <a [routerLink] = '["/products", product.id]' class='btn btn-outline-danger btn-xs'>Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

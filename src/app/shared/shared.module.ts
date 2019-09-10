@@ -16,10 +16,6 @@ in other modules.
     PageNotFoundComponent,
     ConvertToSpacesPipe
   ],
-  imports: [
-    CommonModule,
-    FormsModule
-  ],
   exports: [
     StarComponent,
     PageNotFoundComponent,

@@ -17,6 +17,7 @@ export class ProductListComponent implements OnInit {
     imageIsShown: boolean = true;
     listFilter: string;
     products: IProduct[];
+    listSearch: string;
 
     ngOnInit(): void {
         this.listProducts();
@@ -39,6 +40,7 @@ export class ProductListComponent implements OnInit {
     filter(): void {
         if (!this.listFilter.trim()) {
             this.listProducts();
+            return;
         }
         
         let filterBy: string = this.listFilter.toLowerCase();

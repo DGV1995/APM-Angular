@@ -1,8 +1,14 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { IProduct } from '../../products/product';
 import { Injectable } from '@angular/core';
 import { tap, catchError } from 'rxjs/operators';
+
+const httpOptions = {
+    headers: new HttpHeaders({
+     'Content-Type': 'application/json',
+    })
+ };
 
 @Injectable({
     providedIn: 'root'
@@ -12,8 +18,18 @@ export class ProductService {
     productUrl: string = 'http://localhost:3000/products';
 
     getProducts(): Observable<IProduct[]> {
-        return this.http.get<IProduct[]>(this.productUrl).pipe(
-            tap(data => console.log('All: ' + JSON.stringify(data))),
+        return this.http.get<IProduct[]>(this.productUrl);
+    }
+
+    updateProduct(product: IProduct): Observable<IProduct> {
+        let url = this.productUrl + '/' + product.id
+        return this.http.put<IProduct>(url, product, httpOptions).pipe(
+            catchError(this.handleError)
+        );
+    }
+
+    saveProduct(product: IProduct): Observable<IProduct> {
+        return this.http.post<IProduct>(this.productUrl, product, httpOptions).pipe(
             catchError(this.handleError)
         );
     }
