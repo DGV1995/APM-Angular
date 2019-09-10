@@ -1,64 +1,71 @@
 <div class='card'>
-    <div class='card-body'>
+    <div class='card-header'>
         <div class='row'>
             <div class='col-md-2'>Filter by: </div>
             <div class='col-md-4'>
-                <input type='text' [(ngModel)]='listFilter' (keyup)='filter()'/>
+                <input type='text'
+                       class='form-control'
+                       [(ngModel)]='listFilter'
+                       (keyup)='filter()' />
             </div>
         </div>
-        <div class='row' *ngIf='listFilter'>
+        <div class='row'
+             *ngIf='listFilter'>
             <div class='col-md-6'>
                 <h4>Filtered by: {{listFilter}} </h4>
             </div>
         </div>
-        <div class='table-responsive'>
-            <table class='table table-striped' *ngIf='products && products.length'>
-                <thead>
-                    <tr>
-                        <th>
-                            <button class='btn btn-primary' 
-                                    (click)='toggleImage()'
-                            >
+    </div>
+    <div class='card-body'>
+        <table class='table'
+               *ngIf='products && products.length'>
+            <thead>
+                <tr>
+                    <th>
+                        <button class='btn btn-primary'
+                                (click)='toggleImage()'>
                             {{imageIsShown ? 'Hide' : 'Show'}} Image
-                            </button>
-                        </th>
-                        <th>Product</th>
-                        <th>Code</th>
-                        <th>Available</th>
-                        <th>Price</th>
-                        <th>Rating</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor='let product of products'>
-                        <td>
-                            <img *ngIf='imageIsShown'
-                                 [src]='product.imageUrl' 
-                                 [title]='product.productName'
-                                 [style.width.px]='imageWidth'
-                                 [style.margin.px]='imageMargin'
-                                 
-                            />
-                        </td>
-                        <td><a [routerLink]='["./", product.id]'>{{product.productName}}</a></td>
-                        <td>{{product.productCode | convertToSpaces: '-'}}</td>
-                        <td>{{product.releaseDate}}</td>
-                        <td>{{product.price | currency: 'USD' : 'symbol': '1.2-2'}}</td>
-                        <!-- Use the starRating value in the StarComponent -->
-                        <td>
-                            <pm-stars [rating]='product.starRating'
-                                      (ratingClicked)='onRatingClicked($event)'>
-                                      <!-- Get the ratingClicked event and pass its emitted 
-                                        value (string) to the onRatingClicked() function -->
-                            </pm-stars>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                        </button>
+                    </th>
+                    <th>Product</th>
+                    <th>Code</th>
+                    <th>Category</th>
+                    <th>Available</th>
+                    <th>Price</th>
+                    <th>Rating</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let product of products'>
+                    <td>
+                        <img *ngIf='imageIsShown'
+                             [src]='product.imageUrl'
+                             [title]='product.productName'
+                             [style.width.px]='imageWidth'
+                             [style.margin.px]='imageMargin' />
+                    </td>
+                    <td><a [routerLink]='["./", product.id]'>{{product.productName}}</a></td>
+                    <td>{{product.productCode | convertToSpaces: '-'}}</td>
+                    <td>{{product.productCategory}}</td>
+                    <td>{{product.releaseDate}}</td>
+                    <td>{{product.price | currency: 'USD' : 'symbol': '1.2-2'}}</td>
+                    <!-- Use the starRating value in the StarComponent -->
+                    <td>
+                        <pm-stars [rating]='product.starRating'
+                                  (ratingClicked)='onRatingClicked($event)'>
+                            <!-- Get the ratingClicked event and pass its emitted 
+                                                        value (string) to the onRatingClicked() function -->
+                        </pm-stars>
+                    </td>
+                    <td>
+                        <button class='btn btn-outline-danger' (click)='deleteProduct(product)'>Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <div class='card-footer'>
-        <a class='btn btn-outline-primary btn-xs' [routerLink]='["/add"]'>New product</a>
+        <a class='btn btn-outline-primary btn-lg' [routerLink]='["/add"]'>New product</a>
     </div>
 </div>

@@ -27,7 +27,9 @@ export class ProductEditComponent implements OnInit {
   }
 
   updateProduct(): void {
-    this.productService.updateProduct(this.product).subscribe(product => alert('Product updated successfully'));
-    this.router.navigate(['/products']);
+    if (confirm('Are you sure?')) {
+      this.productService.updateProduct(this.product).subscribe();
+      this.router.navigate(['/products']);
+    }
   }
 }

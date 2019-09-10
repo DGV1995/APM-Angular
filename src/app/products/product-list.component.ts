@@ -47,6 +47,12 @@ export class ProductListComponent implements OnInit {
         this.products = this.products.filter(product => product.productName.toLowerCase().includes(filterBy));
     }
 
+    deleteProduct(product: IProduct) {
+        if(confirm('Are you sure?')) {
+            this.productService.deleteProduct(product).subscribe();
+        }
+    }
+
     // Use the string received from the nested component (StarComponent)
     onRatingClicked(message: string): void {
         alert(message);

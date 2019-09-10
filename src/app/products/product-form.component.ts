@@ -9,8 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent implements OnInit {
-  name: string;
-  code: string;
+  productName: string;
+  productCode: string;
+  category: string;
   description: string;
   releaseDate: string;
   price: number;
@@ -28,8 +29,9 @@ export class ProductFormComponent implements OnInit {
   saveProduct(): void {
     this.product = {
       id: null,
-      productName: this.name,
-      productCode: this.code,
+      productName: this.productName,
+      productCode: this.productCode,
+      productCategory: this.category,
       description: this.description,
       releaseDate: this.releaseDate,
       price: this.price,
@@ -37,7 +39,9 @@ export class ProductFormComponent implements OnInit {
       imageUrl: this.imgUrl
     }
 
-    this.productService.saveProduct(this.product).subscribe(product => alert(product.productName + ' created'));
-    this.router.navigate(['/products']);
+    if (confirm('Are you sure?')) {
+      this.productService.saveProduct(this.product).subscribe();
+      this.router.navigate(['/products']);
+    }
   }
 }

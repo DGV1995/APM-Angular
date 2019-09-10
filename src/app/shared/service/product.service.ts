@@ -33,6 +33,10 @@ export class ProductService {
             catchError(this.handleError)
         );
     }
+
+    deleteProduct(product: IProduct): Observable<IProduct> {
+        return this.http.delete<IProduct>(this.productUrl + '/' + product.id);
+    }
     
     // Function to execute if there is any error retrieving the data from the web server
     private handleError(error: HttpErrorResponse) {
