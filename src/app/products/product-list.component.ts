@@ -20,7 +20,7 @@ export class ProductListComponent implements OnInit {
     listFilter: string;
     products: IProduct[];
     listSearch: string;
-    categoryFilter: string;
+    categoryFilter: string = 'Category';
 
     ngOnInit(): void {
         this.listProducts();
@@ -35,8 +35,9 @@ export class ProductListComponent implements OnInit {
     }
 
     listProductsByCategory(): void {
-        if (this.categoryFilter == '') {
+        if (this.categoryFilter == 'Category' || this.categoryFilter == '-- All --') {
             this.listProducts();
+            this.categoryFilter = 'Category';
         } else {
             this.findByCategory();
         }

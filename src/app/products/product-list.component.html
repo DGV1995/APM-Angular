@@ -15,16 +15,6 @@
             </div>
         </div>
         <p></p><p></p><p></p>
-        <div class='input-group'>
-            <div class='col-md-2'>Choose category:</div>
-            <select class='custom-select col-md-4' name='category menu' [(ngModel)]='categoryFilter' (change)='listProductsByCategory()'>
-                <option selected></option>
-                <option>Gardening</option>
-                <option>Carpentry</option>
-                <option>Leisure</option>
-                <option>Motoring</option>
-            </select>
-        </div>
     </div>
     <div class='card-body'>
         <table class='table' *ngIf='products && products.length'>
@@ -38,7 +28,16 @@
                     </th>
                     <th>Product</th>
                     <th>Code</th>
-                    <th>Category</th>
+                    <th>
+                        <select name='category' [(ngModel)]='categoryFilter' (change)='listProductsByCategory()'>
+                            <option disabled style='font-weight: bold;' *ngIf='categoryFilter == "Category"'><strong>Category</strong></option>
+                            <option *ngIf='categoryFilter !== "Category"'>-- All --</option>
+                            <option>Gardening</option>
+                            <option>Carpentry</option>
+                            <option>Leisure</option>
+                            <option>Motoring</option>
+                        </select>
+                    </th>
                     <th>Available</th>
                     <th>Price</th>
                     <th>Rating</th>

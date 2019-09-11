@@ -1,3 +1,9 @@
-thead {
+thead  {
     color: #337AB7;
+}
+
+select {
+    color: #337AB7;
+    border: 0px;
+    font-weight: bold;
 }
