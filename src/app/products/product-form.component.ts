@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../shared/service/product.service';
 import { IProduct } from './product';
 import { Router } from '@angular/router';
+import { NotificationService } from '../shared/service/notification.service';
 
 @Component({
   selector: 'pm-product-form',
@@ -21,7 +22,9 @@ export class ProductFormComponent implements OnInit {
   title: string = 'New product creation';
   product: IProduct;
 
-  constructor(private productService: ProductService, private router: Router) { }
+  constructor(private productService: ProductService, 
+              private notificationService: NotificationService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -39,7 +42,7 @@ export class ProductFormComponent implements OnInit {
       imageUrl: this.imgUrl
     }
 
-    if (confirm('Are you sure?')) {
+    if (this.notificationService.confirmNotification()) {
       this.productService.saveProduct(this.product).subscribe();
       this.router.navigate(['/products']);
     }

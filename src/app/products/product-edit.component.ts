@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../shared/service/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from './product';
+import { NotificationService } from '../shared/service/notification.service';
 
 @Component({
   selector: 'pm-product-edit',
@@ -13,7 +14,10 @@ export class ProductEditComponent implements OnInit {
   id: number;
   product: IProduct;
 
-  constructor(private productService: ProductService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private productService: ProductService,
+              private notificationService: NotificationService,
+              private route: ActivatedRoute, 
+              private router: Router) { }
 
   ngOnInit() {
     this.id = +this.route.snapshot.paramMap.get('id');
@@ -27,7 +31,7 @@ export class ProductEditComponent implements OnInit {
   }
 
   updateProduct(): void {
-    if (confirm('Are you sure?')) {
+    if (this.notificationService.confirmNotification()) {
       this.productService.updateProduct(this.product).subscribe();
       this.router.navigate(['/products']);
     }
