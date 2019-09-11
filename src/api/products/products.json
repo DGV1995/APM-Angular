@@ -87,6 +87,17 @@
       "price": "33500.00",
       "starRating": "4.8",
       "imageUrl": "assets/images/mercedes.jpg"
+    },
+    {
+      "id": 14,
+      "productName": "Polestar 2",
+      "productCode": "CAR-0012",
+      "productCategory": "Motoring",
+      "description": "Brand: Polestar (Volvo)\nModel: Polestar 2\nPower: 400 CV",
+      "releaseDate": "January, 23th 2020",
+      "price": "45000.00",
+      "starRating": "5",
+      "imageUrl": "assets/images/polestar.jpg"
     }
   ]
 }
