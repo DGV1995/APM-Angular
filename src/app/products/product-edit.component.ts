@@ -11,7 +11,6 @@ import { NotificationService } from '../shared/service/notification.service';
 })
 export class ProductEditComponent implements OnInit {
   title: string = 'Product edition';
-  id: number;
   product: IProduct;
 
   constructor(private productService: ProductService,
@@ -20,13 +19,13 @@ export class ProductEditComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.id = +this.route.snapshot.paramMap.get('id');
-    this.getProduct();
+    let id = +this.route.snapshot.paramMap.get('id');
+    this.getProductById(id);
   }
 
-  getProduct(): void {
+  getProductById(id: number): void {
     this.productService.getProducts().subscribe(products => {
-      this.product = products.find(product => product.id == this.id);
+      this.product = products.find(product => product.id == id);
     });
   }
 

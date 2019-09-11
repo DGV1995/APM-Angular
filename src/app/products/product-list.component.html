@@ -9,16 +9,15 @@
                        (keyup)='filter()' />
             </div>
         </div>
-        <div class='row'
-             *ngIf='listFilter'>
+        <div class='input-group' *ngIf='listFilter'>
             <div class='col-md-6'>
                 <h4>Filtered by: {{listFilter}} </h4>
             </div>
         </div>
         <p></p><p></p><p></p>
         <div class='input-group'>
-            <div class='mx-4'>Choose category: </div>
-            <select class='custom-select' name='category menu' [(ngModel)]='categoryFilter' (change)='listProductsByCategory()'>
+            <div class='col-md-2'>Choose category:</div>
+            <select class='custom-select col-md-4' name='category menu' [(ngModel)]='categoryFilter' (change)='listProductsByCategory()'>
                 <option selected></option>
                 <option>Gardening</option>
                 <option>Carpentry</option>
