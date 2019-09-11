@@ -27,21 +27,20 @@ export class ProductFormComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    this.product = {
+      id: null,
+      productName: null,
+      productCode: null,
+      productCategory: null,
+      description:null,
+      releaseDate: null,
+      price: null,
+      starRating: null,
+      imageUrl: null
+    }
   }
 
   saveProduct(): void {
-    this.product = {
-      id: null,
-      productName: this.productName,
-      productCode: this.productCode,
-      productCategory: this.category,
-      description: this.description,
-      releaseDate: this.releaseDate,
-      price: this.price,
-      starRating: this.rating,
-      imageUrl: this.imgUrl
-    }
-
     if (this.notificationService.confirmNotification()) {
       this.productService.saveProduct(this.product).subscribe();
       this.router.navigate(['/products']);

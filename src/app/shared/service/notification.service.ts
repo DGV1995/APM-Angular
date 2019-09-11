@@ -7,4 +7,8 @@ export class NotificationService {
     confirmNotification(): boolean {
         return confirm('Are you sure?');
     }
+    
+    alertMessage(message: string): void {
+        alert(message);
+    }
 }

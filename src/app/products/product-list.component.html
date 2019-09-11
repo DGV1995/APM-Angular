@@ -1,6 +1,6 @@
 <div class='card'>
     <div class='card-header'>
-        <div class='row'>
+        <div class='input-group'>
             <div class='col-md-2'>Filter by: </div>
             <div class='col-md-4'>
                 <input type='text'
@@ -14,6 +14,17 @@
             <div class='col-md-6'>
                 <h4>Filtered by: {{listFilter}} </h4>
             </div>
+        </div>
+        <p></p><p></p><p></p>
+        <div class='input-group'>
+            <div class='mx-4'>Choose category: </div>
+            <select class='custom-select' name='category menu' [(ngModel)]='categoryFilter' (change)='listProductsByCategory()'>
+                <option selected></option>
+                <option>Gardening</option>
+                <option>Carpentry</option>
+                <option>Leisure</option>
+                <option>Motoring</option>
+            </select>
         </div>
     </div>
     <div class='card-body'>

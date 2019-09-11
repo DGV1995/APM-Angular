@@ -5,7 +5,7 @@
             <div class='form-group row'>
                 <label class='col-sm-2 col-form-label'>Name:</label>
                 <div class='col-sm-10'>
-                    <input type='text' class='form-control' name='name' [(ngModel)]='productName' #name='ngModel' required minlength="4"/>
+                    <input type='text' class='form-control' name='name' [(ngModel)]='product.productName' #name='ngModel' required minlength="4"/>
                     <div *ngIf='name.invalid && (name.dirty || name.touched)' class='alert alert-danger'>
                         <div *ngIf='name.errors.required'>Name is required</div>
                         <div *ngIf='name.errors.minlength'>Name must have at least 4 characters</div>
@@ -15,7 +15,7 @@
             <div class='form-group row'>
                 <label class='col-sm-2 col-form-label'>Code:</label>
                 <div class='col-sm-10'>
-                    <input type='text' class='form-control' name='code' [(ngModel)]='productCode' #code='ngModel' required minlength='3'/>
+                    <input type='text' class='form-control' name='code' [(ngModel)]='product.productCode' #code='ngModel' required minlength='3'/>
                     <div *ngIf='code.invalid && (code.dirty || code.touched)' class='alert alert-danger'>
                         <div *ngIf='code.errors.required'>Code is required</div>
                         <div *ngIf='code.errors.minlength'>Code must have at least 3 characters</div>
@@ -25,37 +25,37 @@
             <div class='form-group row'>
                     <label class='col-sm-2 col-form-label'>Category:</label>
                     <div class='col-sm-10'>
-                        <input type='text' class='form-control' name='category' [(ngModel)]='category'/>
+                        <input type='text' class='form-control' name='product.productCategory' [(ngModel)]='category'/>
                     </div>
                 </div>
             <div class='form-group row'>
                 <label class='col-sm-2 col-form-label'>Description:</label>
                 <div class='col-sm-10'>
-                    <textarea class='form-control' name='description' [(ngModel)]='description'></textarea>
+                    <textarea class='form-control' name='description' [(ngModel)]='product.description'></textarea>
                 </div>
             </div>
             <div class='form-group row'>
                 <label class='col-sm-2 col-form-label'>Availability:</label>
                 <div class='col-sm-10'>
-                    <input type='text' class='form-control' name='releaseDate' [(ngModel)]='releaseDate'/>
+                    <input type='text' class='form-control' name='releaseDate' [(ngModel)]='product.releaseDate'/>
                 </div>
             </div>
             <div class='form-group row'>
                 <label class='col-sm-2 col-form-label'>Price:</label>
                 <div class='col-sm-10'>
-                    <input type='text' class='form-control' name='price' [(ngModel)]='price'/>
+                    <input type='text' class='form-control' name='price' [(ngModel)]='product.price'/>
                 </div>
             </div>
             <div class='form-group row'>
                 <label class='col-sm-2 col-form-label'>5 Star Rating:</label>
                 <div class='col-sm-10'>
-                    <input type='text' class='form-control' name='rating' [(ngModel)]='rating'/>
+                    <input type='text' class='form-control' name='rating' [(ngModel)]='product.starRating'/>
                 </div>
             </div>
             <div class='form-group row'>
                 <label class='col-sm-2 col-form-label'>Image URL:</label>
                 <div class='col-sm-10'>
-                    <input type='text' class='form-control' name='rating' [(ngModel)]='imgUrl'/>
+                    <input type='text' class='form-control' name='rating' [(ngModel)]='product.imageUrl'/>
                 </div>
             </div>
             <input type='submit' class='btn btn-outline-success btn-xs mx-2' value='Accept'/>

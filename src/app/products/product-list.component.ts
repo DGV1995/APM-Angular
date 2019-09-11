@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../shared/service/product.service';
 import { IProduct } from './product';
+import { NotificationService } from '../shared/service/notification.service';
 
 @Component({
     selector: 'pm-products',
@@ -9,7 +10,8 @@ import { IProduct } from './product';
 })
 export class ProductListComponent implements OnInit {
     // Inject the service in the constructor
-    constructor(private productService: ProductService) {}
+    constructor(private productService: ProductService,
+                private notificationService: NotificationService) {}
 
     pageTitle: string = 'Product List';
     imageWidth: number = 30;
@@ -18,6 +20,7 @@ export class ProductListComponent implements OnInit {
     listFilter: string;
     products: IProduct[];
     listSearch: string;
+    categoryFilter: string;
 
     ngOnInit(): void {
         this.listProducts();
@@ -29,6 +32,20 @@ export class ProductListComponent implements OnInit {
             next: data => this.products = data,
             error: err => alert(err) // manage if there is an error
         });
+    }
+
+    listProductsByCategory(): void {
+        if (this.categoryFilter == '') {
+            this.listProducts();
+        } else {
+            this.findByCategory();
+        }
+    }
+
+    findByCategory(): void {
+        this.productService.getProducts().subscribe(data => {
+            this.products = data.filter(product => product.productCategory == this.categoryFilter);
+        })
     }
 
     // Set whether the image is shown or not
@@ -48,14 +65,14 @@ export class ProductListComponent implements OnInit {
     }
 
     deleteProduct(product: IProduct) {
-        if(confirm('Are you sure?')) {
+        if(this.notificationService.confirmNotification()) {
             this.productService.deleteProduct(product).subscribe();
         }
     }
 
     // Use the string received from the nested component (StarComponent)
     onRatingClicked(message: string): void {
-        alert(message);
+        this.notificationService.alertMessage(message);
     }
 }
 
